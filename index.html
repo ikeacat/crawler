@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Static Template</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Loading...</title>
+    <script src="dynamic.js"></script>
+    <style type="text/css">
+      body {
+        font-family: "Times New Roman", sans-serif;
+      }
+    </style>
   </head>
-  <body>
-    <h1>This is a static template, there is no bundler or bundling involved!</h1>
+  <body onload="loadStartMenu()">
+    <script src="dynamic.js"></script>
+    <div id="indextitle"></div>
+    <div id="indexlist"></div>
+    <div id="filename"></div>
+    <div id="filecontents"></div>
+    <div id="extras"></div>
   </body>
 </html>
