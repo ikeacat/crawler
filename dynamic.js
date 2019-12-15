@@ -1,4 +1,4 @@
-var downloads = {};
+var downloads = new Array;
 
 function loadStartMenu() {
   document.title = "Index of /crawler";
@@ -19,10 +19,13 @@ function loadStartMenu() {
   document.getElementById("indexlist").innerHTML = initSMList;
 };
 
+function loadOldGame() {
+
+}
 function startNewGame() {
   localStorage.clear();
   localStorage.setItem("startedGame", "True");
-  localStorage.setItem("")
+  localStorage.setItem("downloads", JSON.stringify(downloads));
   loadDir("/home");
 }
 
@@ -35,24 +38,22 @@ function loadDir(dir) {
   }
   if (dir === "/home/Downloads") {
     localStorage.setItem("directory", "/home/Downloads");
-    if(localStorage.getItem("downloadArray") === null) {
-      var downloads.array = new Array;
-    }
-    if(localStorage.getItem("downloadArray") != null) {
-      var localdownloadstring = localStorage.getItem("downloadArray");
-      downloads.array = JSON.parse()
-    }
     clearPage();
     document.getElementById("indextitle").innerHTML = "<h1>Index of /home/Downloads</h1>";
-    document.getElementById("indexlist").innerHTML = "<ul id='downloadlist'></ul>";
+    document.getElementById("indexlist").innerHTML = '<ul id="ull"><li><a href="javascript:loadDir(\'/home\')">/..</a></li></ul>';
+    var downloadsFLS = localStorage.getItem("downloads")
+    var parsedDFLS = JSON.parse(downloadsFLS);
     var i;
-    for (i = 0; downloads[i] !== null; i++) {
-      document.getElementById("downloadlist").innerHTML += downloads[i];
+    for (i = 0; downloads[i] != null; i++) {
+      document.getElementById("ull").innerHTML += downloads[i];
     }
-    
   }
 }
 
+function updateDownloads() {
+  var ds = JSON.stringify(downloads);
+  localStorage.setItem("downloads",ds);
+}
 function clearPage() {
   document.getElementById("indextitle").innerHTML = "";
   document.getElementById("indexlist").innerHTML = "";
@@ -83,13 +84,16 @@ function getFile(refid) {
     Chief Olson<br>
     NNID<br><br></p>
     <p>ATTACHMENTS:<br>
-    <a href='javascript:unlockNNIDMissionFiles()'>nnidmissionencryptionprivatekey.ppk (RefID: 3)</a></p><br><br>
+    <a href='javascript:downloadFile(3);'>nnidmissionencryptionprivatekey.ppk (RefID: 3)</a></p><br><br>
     <span>[ <a href='javascript:dynamicLoadDir();'>Go Back</a> ] [ <a href='deleteFile(1);'>Delete</a> ]`;
+  }
+  if(refid == 3) {
   }
 }
 
 function downloadFile(refid) {
   if(refid == 3) {
-
+    downloads.push("<li><a>nnidmissionencryptionprivatekey.ppk</a></li>");
+    updateDownloads();
   }
 }
