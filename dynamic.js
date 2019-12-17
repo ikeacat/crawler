@@ -13,14 +13,16 @@ function loadStartMenu() {
     `<ul>
   <li><a href='javascript:startNewGame()'>/startnewgame</a></li>` +
     addMe +
-    "</ul>";
+    "</ul><br><br><p>Dont worry, the game remembers what directory you were in, as long as Local Storage isn't cleared. If it is, there is nothing I can do. It will not save what file you are in when the tab was closed, just the directory.</p>";
   document.getElementById("indextitle").innerHTML =
     "<h1>Index of /crawler</h1>";
   document.getElementById("indexlist").innerHTML = initSMList;
 };
 
 function loadOldGame() {
-
+  if(localStorage.getItem("startedGame") === "True") {
+    dynamicLoadDir();
+  }
 }
 function startNewGame() {
   localStorage.clear();
@@ -62,7 +64,7 @@ function clearPage() {
   document.getElementById("extras").innerHTML = "";
 };
 
-function dynamicLoadDir() {
+function dynamicLoadDir() { // Shall be used in all Go Back buttons because of reference ID system
   var cd = localStorage.getItem("directory");
   loadDir(cd);
 }
@@ -70,7 +72,7 @@ function dynamicLoadDir() {
 function getFile(refid) {
   if(refid === 1) {
     clearPage();
-    document.getElementById("filename").innerHTML = "<p>intro.txt; RefID: 1</p>"
+    document.getElementById("filename").innerHTML = "<p>intro.txt; RefID: 1</p>";
     document.getElementById("filecontents").innerHTML = `<p>Hello Agent,<br>
     I am Chief Olson with the National Nation Investigative Department (NNID).<br>
     Welcome to our Digital Citizen Crimestopper Program aka DiCiCrOp. DiCiCrOp is working with citizens of The Nation to solve crime.<br>
@@ -87,13 +89,88 @@ function getFile(refid) {
     <a href='javascript:downloadFile(3);'>nnidmissionencryptionprivatekey.ppk (RefID: 3)</a></p><br><br>
     <span>[ <a href='javascript:dynamicLoadDir();'>Go Back</a> ] [ <a href='deleteFile(1);'>Delete</a> ]`;
   }
+  if(refid == 2) {
+    clearPage();
+    document.getElementById("filename").innerHTML = "<p>intro.mission; RefID: 2</p>";
+    var ranEncFile = localStorage.getItem("allowMissionFiles");
+    if(ranEncFile == "True") {
+      var checkMissionStatus = missionCheck(1,1);
+      document.getElementById("filecontents").innerHTML = `<p>Found encryption key installed, decrypting...<br><br>
+      Mission ID: 1<br><br>
+      Mission: Intro<br><br>
+      Mission Source: National Nation Investigative Department (NNID)<br><br>
+      Description: Learn how to use the browser, file explorer, and mission program. Extra instructions will be provided upon acception. - Olson<br><br>
+      </p><span id='addShidHere'></span>`;
+      if(checkMissionStatus === "notStarted") {
+        document.getElementById('addShidHere').innerHTML = "[ <a href='javascript:missionCheck(2,1,1);' id='amButton'>Accept Mission</a> ] [ <a href='javascript:dynamicLoadDir();'>Go Back</a> ]"
+      }
+    }
+  }
   if(refid == 3) {
+    clearPage();
+    document.getElementById("filename").innerHTML = "<p>nnidmissionencryptionprivatekey.ppk; RefID: 3</p><br><br>";
+    if(localStorage.getItem("disableNEPK") != "True") {
+      document.getElementById("filecontents").innerHTML = `<p>READING FILE...<br><br>
+      <a href='javascript:miscFunction(1,3)'>Decode File</a><br>
+      <div id='adf'></div>`;
+    }
+    if(localStorage.getItem("disableNEPK") == "True") {
+      document.getElementById("filecontents").innerHTML = "<p>File was already executed. <span>[ <a href='javascript:dynamicLoadDir()'>Go Back</a> ]</span></p>";
+    }
   }
 }
 
 function downloadFile(refid) {
   if(refid == 3) {
-    downloads.push("<li><a>nnidmissionencryptionprivatekey.ppk</a></li>");
+    downloads.push("<li><a href='javascript:getFile(3);'>nnidmissionencryptionprivatekey.ppk</a></li>");
     updateDownloads();
   }
+}
+
+function miscFunction(functionnum, refid) {
+  if(functionnum == 1) { // Decode File
+    if(refid == 3) {
+      if(localStorage.getItem("disableNEPK") != "True") {
+        document.getElementById("adf").innerHTML = `<p>Added 13 allowed IPs<br>
+        Added 4 private keys<br>
+        Edited config for keys to apply to .mission files.<br><br></p>
+        <span>[ <a href='javascript:dynamicLoadDir()'>Done</a> ]</span>`;
+        localStorage.setItem("allowMissionFiles","True");
+        localStorage.setItem("disableNEPK","True");
+      }
+    }
+  }
+}
+
+function missionCheck(action, missionID, missionAction) {
+  if(action == 1) { // Check for mission completion and acceptance.
+    if(missionID == 1) { // intro.mission
+      var checkStatus = localStorage.getItem("mission1");
+      if(checkStatus === null) {
+        return "notStarted";
+      }
+      if(checkStatus === "started") {
+        return "started";
+      }
+      if(checkStatus === "complete") {
+        return "complete";
+      }
+      if(checkStatus === "aborted") {
+        return "aborted";
+      }
+    }
+  }
+  if(action === 2) { // Call for accept, complete, or abort.
+    if(missionID === 1) { // intro.mission; Contains specific element ID's that might not be in other mission file HTML
+      if(missionAction === 1) { // Write to LS "started"
+        localStorage.setItem("mission1", "started");
+        document.getElementById("amButton").innerHTML = "Mission accepted.";
+        document.getElementById("amButton").setAttribute("href", "javascript:doNothing();");
+      }
+    }
+  }
+}
+
+function doNothing() {
+  console.log("Did nothing!");
 }
