@@ -36,7 +36,7 @@ function loadDir(dir) {
     localStorage.setItem("directory", "/home"); // Local Storage is for saving purposes.
     clearPage()
     document.getElementById("indextitle").innerHTML = "<h1>Index of /home</h1>";
-    document.getElementById("indexlist").innerHTML = "<ul id='ULL'><li><a href='javascript:loadDir(`/home/Downloads`)'>/Downloads</a></li><li><a href='javascript:getFile(1)'>intro.txt</a></li><li>intro.mission</li></ul>";
+    document.getElementById("indexlist").innerHTML = "<ul id='ULL'><li><a href='javascript:loadDir(`/home/Downloads`)'>/Downloads</a></li><li><a href='javascript:getFile(1)'>intro.txt</a></li><li><a href='javascript:getFile(2);'>intro.mission</a></li></ul>";
   }
   if (dir === "/home/Downloads") {
     localStorage.setItem("directory", "/home/Downloads");
@@ -104,6 +104,9 @@ function getFile(refid) {
       if(checkMissionStatus === "notStarted") {
         document.getElementById('addShidHere').innerHTML = "[ <a href='javascript:missionCheck(2,1,1);' id='amButton'>Accept Mission</a> ] [ <a href='javascript:dynamicLoadDir();'>Go Back</a> ]"
       }
+    }
+    if(ranEnc != "True") {
+      document.getElementById("filecontents").innerHTML = "<p>ERROR: Cannot decode encoded file. Calls for 'nnidmissionencryptionprivatekey.ppk'.<br><br></p><span>[ <a href='javascript:dynamicLoadDir();'>Go Back</a> ]</span>";
     }
   }
   if(refid == 3) {
