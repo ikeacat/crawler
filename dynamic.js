@@ -100,12 +100,15 @@ function getFile(refid) {
       Mission: Intro<br><br>
       Mission Source: National Nation Investigative Department (NNID)<br><br>
       Description: Learn how to use the browser, file explorer, and mission program. Extra instructions will be provided upon acception. - Olson<br><br>
-      </p><span id='addShidHere'></span>`;
+      </p><span id='addShidHere'></span><br><br>`;
       if(checkMissionStatus === "notStarted") {
         document.getElementById('addShidHere').innerHTML = "[ <a href='javascript:missionCheck(2,1,1);' id='amButton'>Accept Mission</a> ] [ <a href='javascript:dynamicLoadDir();'>Go Back</a> ]"
       }
+      if(checkMissionStatus === "started") {
+      	document.getElementById("addShidHere").innerHTML = "[ Mission already accepted. ] [ <a href='javascript:dynamicLoadDir();'>Go Back</a> ]";
+      }
     }
-    if(ranEnc != "True") {
+    if(ranEncFile != "True") {
       document.getElementById("filecontents").innerHTML = "<p>ERROR: Cannot decode encoded file. Calls for 'nnidmissionencryptionprivatekey.ppk'.<br><br></p><span>[ <a href='javascript:dynamicLoadDir();'>Go Back</a> ]</span>";
     }
   }
@@ -121,12 +124,27 @@ function getFile(refid) {
       document.getElementById("filecontents").innerHTML = "<p>File was already executed. <span>[ <a href='javascript:dynamicLoadDir()'>Go Back</a> ]</span></p>";
     }
   }
+  if(refid == 4) {
+  	clearPage();
+  	
+  }
 }
 
 function downloadFile(refid) {
   if(refid == 3) {
-    downloads.push("<li><a href='javascript:getFile(3);'>nnidmissionencryptionprivatekey.ppk</a></li>");
-    updateDownloads();
+  	var checkAgainst = "<li><a href='javascript:getFile(3);'>nnidmissionencryptionprivatekey.ppk</a></li>"
+  	var check = downloads.includes(checkAgainst);
+  	if(check === false) {
+    	downloads.push(checkAgainst);
+    	updateDownloads();
+	}
+	if(check === true) {
+		doNothing();
+	}
+  }
+  if(refid == 4) {
+  	downloads.push('<li><a href="javascript:getFile(4)">nnidmission1.txt</a></li>');
+  	updateDownloads();
   }
 }
 
@@ -152,6 +170,9 @@ function missionCheck(action, missionID, missionAction) {
       if(checkStatus === null) {
         return "notStarted";
       }
+      if(checkStatus === "notStarted") {
+      	return "notStarted";
+      }
       if(checkStatus === "started") {
         return "started";
       }
@@ -169,6 +190,8 @@ function missionCheck(action, missionID, missionAction) {
         localStorage.setItem("mission1", "started");
         document.getElementById("amButton").innerHTML = "Mission accepted.";
         document.getElementById("amButton").setAttribute("href", "javascript:doNothing();");
+        downloadFile(4);
+        document.getElementById("filecontents").innerHTML += "<p>Downloaded nnidmission1.txt (RefID: 4) to /home/Downloads.</p>";
       }
     }
   }
