@@ -143,8 +143,15 @@ function downloadFile(refid) {
 	}
   }
   if(refid == 4) {
-  	downloads.push('<li><a href="javascript:getFile(4)">nnidmission1.txt</a></li>');
-  	updateDownloads();
+    var checkAgainst = "<li><a href='javascript:getFile(4)'>nnidmission1.txt</a></li>";
+    var check = downloads.includes(checkAgainst)
+    if(check === false) {
+  	 downloads.push('<li><a href="javascript:getFile(4)">nnidmission1.txt</a></li>');
+  	 updateDownloads();
+    }
+    if(check === true) {
+      doNothing();
+    }
   }
 }
 
