@@ -33,6 +33,7 @@ function startNewGame() {
 
 function loadDir(dir) {
   if (dir === "/home") {
+    document.title = "Index of /home";
     localStorage.setItem("directory", "/home"); // Local Storage is for saving purposes.
     clearPage()
     document.getElementById("indextitle").innerHTML = "<h1>Index of /home</h1>";
@@ -40,6 +41,7 @@ function loadDir(dir) {
   }
   if (dir === "/home/Downloads") {
     localStorage.setItem("directory", "/home/Downloads");
+    document.title = "Index of /home/Downloads";
     clearPage();
     document.getElementById("indextitle").innerHTML = "<h1>Index of /home/Downloads</h1>";
     document.getElementById("indexlist").innerHTML = '<ul id="ull"><li><a href="javascript:loadDir(\'/home\')">/..</a></li></ul>';
