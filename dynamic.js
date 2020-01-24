@@ -36,7 +36,7 @@ function loadDir(dir) {
     localStorage.setItem("directory", "/home"); // Local Storage is for saving purposes.
     clearPage()
     document.getElementById("indextitle").innerHTML = "<h1>Index of /home</h1>";
-    document.getElementById("indexlist").innerHTML = "<ul id='ULL'><li><a href='javascript:loadDir(`/home/Downloads`)'>/Downloads</a></li><li><a href='javascript:getFile(1)'>intro.txt</a></li><li><a href='javascript:getFile(2);'>intro.mission</a></li></ul>";
+    document.getElementById("indexlist").innerHTML = "<ul id='ULL'><li><a href='javascript:loadDir(`/home/Downloads`)'>/Downloads</a></li><li><a href='javascript:getFile(1)'>intro.rtf</a></li><li><a href='javascript:getFile(2);'>intro.mission</a></li></ul>";
   }
   if (dir === "/home/Downloads") {
     localStorage.setItem("directory", "/home/Downloads");
@@ -72,7 +72,7 @@ function dynamicLoadDir() { // Shall be used in all Go Back buttons because of r
 function getFile(refid) {
   if(refid === 1) {
     clearPage();
-    document.getElementById("filename").innerHTML = "<p>intro.txt; RefID: 1</p>";
+    document.getElementById("filename").innerHTML = "<p>intro.rtf; RefID: 1</p>";
     document.getElementById("filecontents").innerHTML = `<p>Hello Agent,<br>
     I am Chief Olson with the National Nation Investigative Department (NNID).<br>
     Welcome to our Digital Citizen Crimestopper Program aka DiCiCrOp. DiCiCrOp is working with citizens of The Nation to solve crime.<br>
