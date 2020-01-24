@@ -207,3 +207,9 @@ function missionCheck(action, missionID, missionAction) {
 function doNothing() {
   console.log("Did nothing!");
 }
+
+function debug(num) {
+  if(num === 1) {
+    document.getElementById("csslink").setAttribute("href","darkMode.css");
+  }
+}
