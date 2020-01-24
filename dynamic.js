@@ -89,7 +89,7 @@ function getFile(refid) {
     NNID<br><br></p>
     <p>ATTACHMENTS:<br>
     <a href='javascript:downloadFile(3);'>nnidmissionencryptionprivatekey.ppk (RefID: 3)</a></p><br><br>
-    <span>[ <a href='javascript:dynamicLoadDir();'>Go Back</a> ] [ <a href='deleteFile(1);'>Delete</a> ]`;
+    <span>[ <a href='javascript:dynamicLoadDir();'>Go Back</a> ] [ <a href='javascript:deleteFile(1);'>Delete</a> ]`;
   }
   if(refid == 2) {
     clearPage();
