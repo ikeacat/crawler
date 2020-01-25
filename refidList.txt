@@ -1,0 +1,8 @@
+Reference IDs
+
+use the "cat" function to access these.
+(ex. cat(1) will access hello.rtf)
+Debug use only.
+
+1 - hello.rtf
+2 - introduction.mission
