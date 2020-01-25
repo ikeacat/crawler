@@ -1,3 +1,5 @@
+var versionNumber = "1.0.1"
+
 function loadStartMenu() {
     document.title = "Index of /crawler"
     document.getElementById("indextitle").innerHTML = "Index of /crawler";
@@ -19,8 +21,24 @@ function loadStartMenu() {
     document.getElementById("indexlist").innerHTML = `<ul id='insertLater'>
     <li>/startNewGame</li>
     <li>/continueOldGame</li>` + dm +
-    `</ul>`;
-    
+    `</ul><hr>`;
+    var vnumber = getLSVNum()
+    document.getElementById("extras").innerHTML = `<h6>Version ` + versionNumber + `</h6><h6>Autosave number: ` + vnumber + `</h6><h6>Automagically saves (if it doesn't it will tell you)</h6>`;
+}
+
+function getLSVNum() {
+    var vnum = localStorage.getItem("originalSaveVersion");
+    if(vnum != null) {
+        if(vnum != versionNumber) {
+            var message = vnum + " Your save may not be compatible, depending on how far back it was made. If it is broken, sorry."
+            return message;
+        }
+        if(vnum == versionNumber) {
+            return vnum + " Your save was made with this version.";
+        }
+    } else {
+        return "No save found. Whoops!"
+    }
 }
 
 function darkMode(dms) {
