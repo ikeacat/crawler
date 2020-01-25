@@ -8,27 +8,27 @@ function loadStartMenu() {
     var addMe = "";
   }
   if (startedGame === "True") {
-    var addMe = "<li style='color:red'>/continuesave (Not Avalaible)</li>";
+    var addMe = "<li><a href='javascript:'/continuesave</li>";
   }
   var darkSetting = localStorage.getItem("darkSetting");
-  console.log("got le dark setting");
   if (darkSetting == "dark") {
     document.getElementById("csslink").setAttribute("href","darkMode.css");
     console.log("Detected Dark mode.");
+    var dmswitcher = `<li><a id='dm' href='javascript:changeMode("lightMode",true)'>switchtolightmode.exe</a></li>`
   } else if (darkSetting = "light") {
     document.getElementById("csslink").setAttribute("href","lightMode.css");
     console.log("Detected Light mode.");
+    var dmswitcher = `<li><a id='dm' href='javascript:changeMode("darkMode",true)'>switchtodarkmode.exe</a></li>`
   } else {
     document.getElementById("csslink").setAttribute("href","lightMode.css");
     console.log("'darkSetting' is not 'dark' or 'light'. Assuming Light.");
     localStorage.setItem("darkSetting","light");
     console.log("Set to " + localStorage.getItem("darkSetting"));
   }
-  console.log("finished le dark setting");
   var initSMList =
     `<ul>
   <li><a href='javascript:startNewGame()'>/startnewgame</a></li>` +
-    addMe +
+    addMe + dmswitcher +
     "</ul><p>Dont worry, the game remembers what directory you were in, as long as Local Storage isn't cleared. If it is, there is nothing I can do. It will not save what file you are in when the tab was closed, just the directory.</p>";
   document.getElementById("indextitle").innerHTML =
     "<h1>Index of /crawler</h1>";
@@ -64,14 +64,18 @@ function loadDir(dir) {
     clearPage();
     document.getElementById("indextitle").innerHTML = "<h1>Index of /home/Downloads</h1>";
     document.getElementById("indexlist").innerHTML = '<ul id="ull"><li><a href="javascript:loadDir(\'/home\')">/..</a></li></ul>';
-    var namessuck = []
+    var namessuck = new Array;
     var downloadsFLS = localStorage.getItem("downloads")
     var parsedDFLS = JSON.parse(downloadsFLS);
     namessuck.push(parsedDFLS)
     console.log(parsedDFLS)
     var i;
-    for (i = 0; namessuck[i] != null; i++) {
-      document.getElementById("ull").innerHTML += downloads[i];
+    if(namessuck == undefined) {
+      doNothing();
+    } else {
+      for (i = 0; namessuck[i] != null; i++) {
+        document.getElementById("ull").innerHTML += downloads[i];
+      }
     }
   }
 }
@@ -239,13 +243,21 @@ function debug(num) {
   }
 }
 
-function changeMode(dlm) {
+function changeMode(dlm,ohp) {
   if(dlm == "darkMode") {
     document.getElementById("csslink").setAttribute("href","darkMode.css");
     localStorage.setItem("darkSetting","dark");
+    if(ohp == true) {
+      document.getElementById("dm").innerHTML = "switchtolightmode.exe";
+      document.getElementById("dm").setAttribute("href","javascript:changeMode('lightMode',true)")
+    }
   }
   if(dlm == "lightMode") {
     document.getElementById("csslink").setAttribute("href","lightMode.css");
     localStorage.setItem("darkSetting","light");
+    if(ohp == true) {
+      document.getElementById("dm").innerHTML = "switchtodarkmode.exe";
+      document.getElementById("dm").setAttribute("href","javascript:changeMode('darkMode',true)")
+    }
   }
 }
