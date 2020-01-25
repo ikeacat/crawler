@@ -1,3 +1,13 @@
 body {
-  background-color: #5A577E;
+  	background-color: #1B0949;
+  	color: white;
+  	font-family: "Tinos", sans-serif;
+}
+
+.fc {
+	font-family: monospace;
+}
+
+a:active {
+	color: white;
 }

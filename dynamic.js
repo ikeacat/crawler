@@ -1,4 +1,5 @@
 var downloads = new Array;
+var versionNumber = "1.0.0.1"
 
 function loadStartMenu() {
   document.title = "Index of /crawler";
@@ -9,14 +10,30 @@ function loadStartMenu() {
   if (startedGame === "True") {
     var addMe = "<li style='color:red'>/continuesave (Not Avalaible)</li>";
   }
+  var darkSetting = localStorage.getItem("darkSetting");
+  console.log("got le dark setting");
+  if (darkSetting == "dark") {
+    document.getElementById("csslink").setAttribute("href","darkMode.css");
+    console.log("Detected Dark mode.");
+  } else if (darkSetting = "light") {
+    document.getElementById("csslink").setAttribute("href","lightMode.css");
+    console.log("Detected Light mode.");
+  } else {
+    document.getElementById("csslink").setAttribute("href","lightMode.css");
+    console.log("'darkSetting' is not 'dark' or 'light'. Assuming Light.");
+    localStorage.setItem("darkSetting","light");
+    console.log("Set to " + localStorage.getItem("darkSetting"));
+  }
+  console.log("finished le dark setting");
   var initSMList =
     `<ul>
   <li><a href='javascript:startNewGame()'>/startnewgame</a></li>` +
     addMe +
-    "</ul><br><br><p>Dont worry, the game remembers what directory you were in, as long as Local Storage isn't cleared. If it is, there is nothing I can do. It will not save what file you are in when the tab was closed, just the directory.</p>";
+    "</ul><p>Dont worry, the game remembers what directory you were in, as long as Local Storage isn't cleared. If it is, there is nothing I can do. It will not save what file you are in when the tab was closed, just the directory.</p>";
   document.getElementById("indextitle").innerHTML =
     "<h1>Index of /crawler</h1>";
   document.getElementById("indexlist").innerHTML = initSMList;
+  document.getElementById("indexlist").innerHTML += "<h6>Version " + versionNumber + "</h6>";
 };
 
 function loadOldGame() {
@@ -25,9 +42,11 @@ function loadOldGame() {
   }
 }
 function startNewGame() {
+  var saveDarkModeSetting = localStorage.getItem("darkSetting");
   localStorage.clear();
   localStorage.setItem("startedGame", "True");
   localStorage.setItem("downloads", JSON.stringify(downloads));
+  localStorage.setItem("darkSetting", saveDarkModeSetting);
   loadDir("/home");
 }
 
@@ -45,10 +64,13 @@ function loadDir(dir) {
     clearPage();
     document.getElementById("indextitle").innerHTML = "<h1>Index of /home/Downloads</h1>";
     document.getElementById("indexlist").innerHTML = '<ul id="ull"><li><a href="javascript:loadDir(\'/home\')">/..</a></li></ul>';
+    var namessuck = []
     var downloadsFLS = localStorage.getItem("downloads")
     var parsedDFLS = JSON.parse(downloadsFLS);
+    namessuck.push(parsedDFLS)
+    console.log(parsedDFLS)
     var i;
-    for (i = 0; downloads[i] != null; i++) {
+    for (i = 0; namessuck[i] != null; i++) {
       document.getElementById("ull").innerHTML += downloads[i];
     }
   }
@@ -143,6 +165,7 @@ function downloadFile(refid) {
 	if(check === true) {
 		doNothing();
 	}
+  updateDownloads()
   }
   if(refid == 4) {
     var checkAgainst = "<li><a href='javascript:getFile(4)'>nnidmission1.txt</a></li>";
@@ -213,5 +236,16 @@ function doNothing() {
 function debug(num) {
   if(num === 1) {
     document.getElementById("csslink").setAttribute("href","darkMode.css");
+  }
+}
+
+function changeMode(dlm) {
+  if(dlm == "darkMode") {
+    document.getElementById("csslink").setAttribute("href","darkMode.css");
+    localStorage.setItem("darkSetting","dark");
+  }
+  if(dlm == "lightMode") {
+    document.getElementById("csslink").setAttribute("href","lightMode.css");
+    localStorage.setItem("darkSetting","light");
   }
 }
