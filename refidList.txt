@@ -6,3 +6,4 @@ Debug use only.
 
 1 - hello.rtf
 2 - introduction.mission
+3 - missionkey.ppk

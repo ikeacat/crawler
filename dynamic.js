@@ -1,4 +1,5 @@
-var versionNumber = "1.0.1"
+var versionNumber = "1.1"
+var ginfo = {};
 
 function loadStartMenu() {
     document.title = "Index of /crawler"
@@ -19,11 +20,12 @@ function loadStartMenu() {
         localStorage.setItem("darkSetting","light");
     }
     document.getElementById("indexlist").innerHTML = `<ul id='insertLater'>
-    <li>/startNewGame</li>
+    <li><a href='javascript:startNewGame()'>/startNewGame</a>  <i>Will delete old save.</i></li>
     <li>/continueOldGame</li>` + dm +
     `</ul><hr>`;
     var vnumber = getLSVNum()
     document.getElementById("extras").innerHTML = `<h6>Version ` + versionNumber + `</h6><h6>Autosave number: ` + vnumber + `</h6><h6>Automagically saves (if it doesn't it will tell you)</h6>`;
+    console.log("Done loading start menu.");
 }
 
 function getLSVNum() {
@@ -37,12 +39,67 @@ function getLSVNum() {
             return vnum + " Your save was made with this version.";
         }
     } else {
-        return "No save found. Whoops!"
+        return "No save found. Whoops!";
     }
 }
 
+function loadDirectory(dir) {
+    if(dir == "/home") {
+        localStorage.setItem("activeDirectory","/home")
+        clearPage();
+        document.getElementById("indextitle").innerHTML = "Index of /home";
+        document.getElementById("indexlist").innerHTML = "<ul id='homelist'></ul>";
+        document.getElementById("homelist").innerHTML = `<li><a href='javascript:loadDirectory("/home/Downloads")'>/Downloads</a></li>
+        <li><a href='javascript:cat(1)'>hello.rtf</a></li>
+        <li><a href='javascript:cat(2)'>introduction.mission</a></li>`;
+    }
+    if(dir == "/home/Downloads") {
+        localStorage.setItem("activeDirectory","/home/Downloads")
+        clearPage();
+        var downloadsLS = localStorage.getItem("downloads");
+        if(downloadsLS != null) {
+            var downloadsDLS = downloadsLS.replace("undefined","")
+        }
+        console.log(downloadsDLS)
+        document.getElementById("indextitle").innerHTML = "Index of /home/Downloads";
+        document.getElementById("indexlist").innerHTML = `<ul><li><a href='javascript:loadDirectory("/home")'>/..</a></li>` + downloadsDLS + "</ul>";
+    }
+}
+
+function clearPage() {
+    document.getElementById("indextitle").innerHTML = "";
+    document.getElementById("indexlist").innerHTML = "";
+    document.getElementById("filename").innerHTML = "";
+    document.getElementById("filecontents").innerHTML = "";
+    document.getElementById("extras").innerHTML = "";
+}
+
+function startNewGame() {
+    var saveDMS = localStorage.getItem("darkSetting");
+    localStorage.clear();
+    localStorage.setItem("darkSetting",saveDMS);
+    localStorage.setItem("originalSaveVersion",versionNumber);
+    clearPage();
+    document.getElementById("indextitle").innerHTML = "NAID Signup";
+    document.getElementById("indexlist").innerHTML = "<p>Set a username and password before using NAID devices. This cannot be changed after submitted.</p>"
+    document.getElementById("filename").innerHTML = "<p>Username</p><input id='name'></input><p>Password</p><input id='pword'></input><br><br><button onclick='setUsername()'>Continue</button>";
+}
+
+function setUsername() {
+    ginfo.username = document.getElementById("name").value;
+    ginfo.password = document.getElementById("pword").value;
+    var email = ginfo.username + "@naid.gov"
+    email = email.replace(" ", ".")
+    console.log(email)
+    ginfo.email = email
+    localStorage.setItem("un", ginfo.username);
+    localStorage.setItem("pw", ginfo.password);
+    localStorage.setItem("email", ginfo.email);
+    loadDirectory("/home");
+}
+
 function darkMode(dms) {
-    var darkSetting = localStorage.getItem("darkSetting")
+    var darkSetting = localStorage.getItem("darkSetting");
     if(dms == "dark") {
         localStorage.setItem("darkSetting","dark");
         document.getElementById("csslink").setAttribute("href","darkMode.css");
@@ -54,4 +111,39 @@ function darkMode(dms) {
         document.getElementById("dmswitch").innerHTML = 'switchToDarkMode.exe';
         document.getElementById("dmswitch").setAttribute("href","javascript:darkMode('dark')");
     }
+}
+
+function cat(refid) {
+    if(refid == 1) {
+        clearPage();
+        document.getElementById("filename").innerHTML = "<p>hello.email; RefID: 1</p>";
+        document.getElementById("filecontents").innerHTML = `<p>
+        <b>To: </b> ` + localStorage.getItem("email") +
+        `<br><br><b>From: </b>cdebordeaux@naid.gov<br><br>
+        <b>Subject: </b>Hello!<br><br>
+        Hello,<br><br>
+        Welcome to the NAID Crimestopper Program!<br><br>
+        I hope you are doing well.<br><br>
+        As you can see, Y2K didn't happen. My heart rate went up 200 bpm once the clock hit midnight last night!.<br><br>
+        Anyways, lets get down to business.<br>
+        This entire job you have will be on a case by case basis. For now, lets start you off with an intro case. Easy and smooth.<br>
+        This will be described in the mission file. Download the attachment, run it, and you will be able to access all NAID mission files.<br><br>
+        - Catherine De Bordeaux</p><br><br>
+        <span>ATTACHMENT: <a href='javascript:download(2)'>missionkey.ppk</a></span>
+        <span>[ <a href='javascript:loadDirectory("/home");'>Back</a> ]</span>`;
+    }
+    if(refid == 2) {
+        
+    }
+}
+
+function download(refid) {
+    if(refid == 2) {
+        ginfo.downloads += "<li><a href='javascript:cat(2)'>missionkey.ppk</a></li>";
+        updateDownloads();
+    }
+}
+
+function updateDownloads() {
+    localStorage.setItem("downloads",ginfo.downloads);
 }
