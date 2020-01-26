@@ -129,17 +129,38 @@ function cat(refid) {
         This entire job you have will be on a case by case basis. For now, lets start you off with an intro case. Easy and smooth.<br>
         This will be described in the mission file. Download the attachment, run it, and you will be able to access all NAID mission files.<br><br>
         - Catherine De Bordeaux</p><br><br>
-        <span>ATTACHMENT: <a href='javascript:download(2)'>missionkey.ppk</a></span>
+        <span>ATTACHMENT: <a href='javascript:download(3)'>missionkey.ppk</a></span>
         <span>[ <a href='javascript:loadDirectory("/home");'>Back</a> ]</span>`;
     }
     if(refid == 2) {
         
     }
+    if(refid == 3) {
+        clearPage();
+        document.getElementById("filename").innerHTML = "<p>missionkey.ppk; RefID: 3</p>";
+        document.getElementById("filecontents").innerHTML = "<p>NAID Mission Private Key Bundle. Run file to continue.</p><br><br><span>[ <a href='javascript:runFile(3)'>Run File</a> ]</span><br><br><p id='cont'></p>"
+    }
+}
+
+function runFile(refid) {
+    if(refid == 3) {
+        if(localStorage.getItem("ranNAIDKey") != "true") {
+            document.getElementById("cont").innerHTML = "Added 15 private keys.<br>Added private key reader<br>Added NAID SSH key.<br><br><span>[ <a href='javascript:dynamicLD()'>Done</a> ]";
+            localStorage.setItem("ranNAIDKey","true");
+        } else {
+            document.getElementById("cont").innerHTML = "ERROR! Keys already in system. Not proceeding. Duplicates may cause problems.";
+            document.getElementById("cont").setAttribute("style","color:red");
+        }
+    }
+}
+function dynamicLD() {
+    var LSAD = localStorage.getItem("activeDirectory");
+    loadDirectory(LSAD);
 }
 
 function download(refid) {
-    if(refid == 2) {
-        ginfo.downloads += "<li><a href='javascript:cat(2)'>missionkey.ppk</a></li>";
+    if(refid == 3) {
+        ginfo.downloads += "<li><a href='javascript:cat(3)'>missionkey.ppk</a></li>";
         updateDownloads();
     }
 }
