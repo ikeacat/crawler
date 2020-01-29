@@ -133,7 +133,10 @@ function cat(refid) {
         <span>[ <a href='javascript:loadDirectory("/home");'>Back</a> ]</span>`;
     }
     if(refid == 2) {
-        
+        clearPage();
+        document.getElementById("filename").innerHTML = "<p>introduction.mission; RefID: 2</p><br>";
+        var lscheck = localStorage.getItem("ranNAIDKey");
+        document.getElementById("filecontents").innerHTML = "<p>REQUISITES:<br><br>NAID Private Key 1: <span id='check1'>Waiting for Check<span><br>NAID Private Key 4: <span id='check2'>Waiting for Check</span><br><br><span>[ <a href='javascript:runFile(2)'>Start Check</a> ]</span><br><br><span id='amf'></span>"
     }
     if(refid == 3) {
         clearPage();
@@ -145,10 +148,10 @@ function cat(refid) {
 function runFile(refid) {
     if(refid == 3) {
         if(localStorage.getItem("ranNAIDKey") != "true") {
-            document.getElementById("cont").innerHTML = "Added 15 private keys.<br>Added private key reader<br>Added NAID SSH key.<br><br><span>[ <a href='javascript:dynamicLD()'>Done</a> ]";
+            document.getElementById("cont").innerHTML = "Added 15 private keys.<br>Added private key reader<br>Added NAID SSH key.<br><br><span>[ <a href='javascript:dynamicLD()'>Done</a> ]</span>";
             localStorage.setItem("ranNAIDKey","true");
         } else {
-            document.getElementById("cont").innerHTML = "ERROR! Keys already in system. Not proceeding. Duplicates may cause problems.";
+            document.getElementById("cont").innerHTML = "ERROR! Keys already in system. Not proceeding. Duplicates may cause problems.<br><span>[ <a href='javascript:dynamicLD()'>Ok</a> ]</span>";
             document.getElementById("cont").setAttribute("style","color:red");
         }
     }
