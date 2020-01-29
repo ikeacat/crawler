@@ -136,7 +136,7 @@ function cat(refid) {
         clearPage();
         document.getElementById("filename").innerHTML = "<p>introduction.mission; RefID: 2</p><br>";
         var lscheck = localStorage.getItem("ranNAIDKey");
-        document.getElementById("filecontents").innerHTML = "<p>REQUISITES:<br><br>NAID Private Key 1: <span id='check1'>Waiting for Check<span><br>NAID Private Key 4: <span id='check2'>Waiting for Check</span><br><br><span>[ <a href='javascript:runFile(2)'>Start Check</a> ]</span><br><br><span id='amf'></span>"
+        document.getElementById("filecontents").innerHTML = "<p>REQUISITES:<br><br>NAID Private Key 1: <span id='check1'>Waiting for Check</span><br>NAID Private Key 4: <span id='check2'>Waiting for Check</span><br><br><span>[ <a href='javascript:runFile(2)'>Start Check</a> ]</span><br><br><span id='amf'></span>"
     }
     if(refid == 3) {
         clearPage();
@@ -154,6 +154,23 @@ function runFile(refid) {
             document.getElementById("cont").innerHTML = "ERROR! Keys already in system. Not proceeding. Duplicates may cause problems.<br><span>[ <a href='javascript:dynamicLD()'>Ok</a> ]</span>";
             document.getElementById("cont").setAttribute("style","color:red");
         }
+    } else if (refid == 2) {
+      var checkforRanFile = localStorage.getItem("ranNAIDKey");
+      if(checkforRanFile == "true") {
+        document.getElementById("check1").innerHTML = "Success";
+        document.getElementById("check2").innerHTML = "Success";
+        document.getElementById("check1").setAttribute("style","color:green");
+        document.getElementById("check2").setAttribute("style","color:green");
+        document.getElementById("amf").innerHTML = `<p>MISSION FILE TYPE (C) MISSIONS, INC 1998, 1999, 2000<br><br>
+        <b>Name:</b> Introduction<br><br>
+        <b>Source:</b> North American Investigative Department<br><br>
+        <b>Description:</b> Learn how to use essential programs to enhance investigative experinces.</p>`
+      } else {
+        document.getElementById("check1").innerHTML = "Failed";
+        document.getElementById("check2").innerHTML = "Failed";
+        document.getElementById("check1").setAttribute("style","color:red");
+        document.getElementById("check2").setAttribute("style","color:red");
+      }
     }
 }
 function dynamicLD() {
