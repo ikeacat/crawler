@@ -1,0 +1,27 @@
+.HSTitle {
+	font-size: 40px;
+}
+
+body {
+	font-family: "Roboto", sans-serif;
+}
+
+.leftfifty {
+	left: 50px;
+	position: relative;
+}
+
+.defbutton {
+	border-radius: 20px;
+	border: transparent;
+	padding: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	transition: all 0.3s ease 0s;
+}
+
+.defbutton:hover {
+	background-color: lightgreen;
+	transform: translateY(-10px);
+	box-shadow: 0px 10px 50px 10px lightgreen;
+}
