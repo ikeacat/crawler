@@ -21,6 +21,9 @@ function submitCreds() {
   localStorage.clear()
   var usrnm = document.getElementById("un").value;
   var paswd = document.getElementById("pw").value;
+  if(usrnm == "") {
+    usrnm = "Dunce";
+  }
   localStorage.setItem("username", usrnm);
   localStorage.setItem("password", paswd);
   messageFromDirector();
@@ -38,6 +41,7 @@ function messageFromDirector() {
 
 function homeScreen() {
   document.getElementById("rootDIV").innerHTML = `<div><div id='infoCard' class='defaultCardDynamic HSInfoCard'><h1 class='leftfifty welcomeMessage'>Welcome, <span id='un'></span>!</div>
-  <div class='defaultCardDynamic HSCardTopMargin HSMissionCard' style='height: 250px;'><h1 class='leftfifty' style='top:140px;'>Missions</h1></div></div>`;
+  <div class='defaultCardDynamic HSCardTopMargin HSMissionCard' style='height: 250px;'><h1 class='leftfifty HSCardText'>Missions</h1></div>
+  <div class='defaultCardDynamic HSCardTopMargin HSSettingsCard'><h1 class='leftfifty HSCardText'>Settings</h1></div></div>`;
   document.getElementById("un").innerHTML = localStorage.getItem("username");
 }

@@ -132,7 +132,6 @@ body {
 .HSMissionCard {
 	border: 20px solid white;
 	background-image: url("pic/missions.png");
-	transition: all 0.3s ease-in-out;
 }
 
 .HSMissionCard:hover {
@@ -148,3 +147,15 @@ body {
 	95% {border-color: purple;}
 	100% {border-color: red;}
 }
+
+.HSSettingsCard {
+	height: 250px;
+	border: 20px solid white;
+	background-image: url("pic/settings.jpg");
+}
+
+.HSSettingsCard:hover {
+	animation: borderColorAni 5s infinite;
+}
+
+.HSCardText { top:140px; color: white; font-size: 50px; }
