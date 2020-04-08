@@ -3,20 +3,23 @@
   <head>
     <link href="neu.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comic+Neue|IM+Fell+French+Canon+SC|Merriweather|Roboto+Mono&display=swap" rel="stylesheet"> 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Crawler.</title>
     <script src="dynamic.js"></script>
   </head>
-  <body>
+  <body class="HSBody">
     <script src="dynamic.js"></script>
-    <div class="rootDIV">
-      <div class="leftfifty" id="fullHS">
+    <div id="rootDIV">
+      <div class="leftfifty robotoFont" id="fullHS">
         <h1 class="HSTitle">Crawler.</h1>
-        <h2>Amerida thanks you.</h2>
         <br>
-        <button class="defbutton" onclick="startGame()">Login</button>
+        <div class='buttonbar'>
+          <button class="defbutton" onclick="startGame()">Start New Game</button>
+          <button class="defbutton" disabled="disabled">Continue Save</button>
+        </div>
       </div>
     </div>
   </body>
