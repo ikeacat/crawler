@@ -100,17 +100,51 @@ body {
 }
 
 @keyframes fontchange {
-	10% { font-family: "Roboto", sans-serif}
-	20% { font-family: "Comic Sans MS", fantasy}
-	30% { font-family: "Calibri", sans-serif}
-	40% { font-family: "Pacifico"}
-	50% { font-family: "Comic Neue"}
+	10% { font-family: "Roboto", sans-serif;}
+	20% { font-family: "Comic Sans MS", fantasy;}
+	30% { font-family: "Calibri", sans-serif;}
+	40% { font-family: "Pacifico";}
+	50% { font-family: "Comic Neue";}
 	60% {font-family: "IM Fell French Canon SC";}
-	70% {font-family: "Roboto Mono"}
-	80% {font-family: "Merriweather"}
-	90% {font-family: "Roboto", sans-serif}
+	70% {font-family: "Roboto Mono";}
+	80% {font-family: "Merriweather";}
+	90% {font-family: "Roboto", sans-serif;}
+	100% {font-family: "Open Sans Condensed", sans-serif;}
 }
 
 .noButtonGoUp:hover {
 	transform: none !important;
+}
+
+.noRainbowAni:hover {
+	animation: none !important;
+}
+
+.welcomeMessage {
+	animation: titleAni 20s infinite;
+	font-size: 50px;
+}
+
+.HSCardTopMargin {
+	margin-top: 30px;
+}
+
+.HSMissionCard {
+	border: 20px solid white;
+	background-image: url("pic/missions.png");
+	transition: all 0.3s ease-in-out;
+}
+
+.HSMissionCard:hover {
+	animation: borderColorAni 5s infinite;
+}
+
+@keyframes borderColorAni {
+	0% {border-color: red;}
+	20% {border-color: orange;}
+	40% {border-color: yellow;}
+	60% {border-color: lightgreen;}
+	80% {border-color: blue;}
+	95% {border-color: purple;}
+	100% {border-color: red;}
 }
