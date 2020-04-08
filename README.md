@@ -1,7 +1,9 @@
 # Crawler
 
-a wip game about crime n' stuff???
+Just recieved a redesign!
 
-I really don't know what the direction of the game is going to be or if it will be in the browser (probs will be)
+A WIP Game about crime. 
 
-runs in the browser (so it is easily accessable)
+Runs in the browser
+
+Current Version: 1.2
