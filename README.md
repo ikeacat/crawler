@@ -1,7 +1,9 @@
 # Crawler
 
-a wip game about crime n' stuff
+Just recieved a redesign!
 
-runs in the browser (so it is easily accessable)
+A WIP Game about crime. 
 
-Games design & (largely) its entire concept is changing. Preview it in the "neu" branch.
+Runs in the browser
+
+Current Version: 1.2

@@ -1,0 +1,161 @@
+.HSTitle {
+	font-size: 40px;
+	color: white;
+	animation: fontchange 2s infinite; 
+	position: relative;
+}
+
+@keyframes titleAni {
+	0% {color: red;}
+	20% {color: orange;}
+	40% {color: yellow;}
+	60% {color: lightgreen;}
+	80% {color: blue}
+	95% {color: purple;}
+	100% {color: red;}
+}
+
+@keyframes BGAni {
+	0% {background-color: rgb(255, 89, 89);}
+	16% {background-color: orange;}
+	32% {background-color: yellow;}
+	48% {background-color: rgb(68, 255, 68);}
+	64% {background-color: blue}
+	80% {background-color: rgb(206, 29, 206);}
+	100% {background-color: rgb(255, 89, 89)}
+}
+
+body {
+	font-family: "Roboto", sans-serif;
+	overflow: hidden;
+}
+
+.HSBody {
+	animation: BGAni 20s infinite;
+}
+
+.leftfifty {
+	left: 50px;
+	position: relative;
+}
+
+.defbutton {
+	border-radius: 20px;
+	border: transparent;
+	padding: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	transition: all 0.3s ease 0s;
+	background-color: #e6e6e6;
+}
+
+.defbutton:hover {
+	animation-name: BGAni;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	transform: translateY(-5px);
+}
+.buttonbar {
+	position: absolute;
+	top: 100px;
+}
+
+.HSInfoCard {
+	position: relative;
+	width: 100%;
+	left: 10px;
+	right: 10px;
+	display: inline-block;
+}
+
+.defaultCardDynamic {
+  position: static;
+  border-radius: 40px;
+  background-color: #ffffff;
+  box-shadow:  20px 20px 60px #c2c2c2, 
+  -20px -20px 60px #ffffff;
+  word-wrap: break-word;
+}
+
+.robotoFont {
+	font-family: "Roboto";
+}
+
+.connectButton {
+	background-color: blueviolet;
+	border-radius: 10px;
+	border: transparent;
+	padding: 50px;
+	width: 250px;
+	height: 200px;
+	font-size: 40px;
+	animation-name: BGAni;
+	animation-iteration-count: infinite;
+	animation-duration: 0.5s;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -125px;
+}
+
+@keyframes fontchange {
+	10% { font-family: "Roboto", sans-serif;}
+	20% { font-family: "Comic Sans MS", fantasy;}
+	30% { font-family: "Calibri", sans-serif;}
+	40% { font-family: "Pacifico";}
+	50% { font-family: "Comic Neue";}
+	60% {font-family: "IM Fell French Canon SC";}
+	70% {font-family: "Roboto Mono";}
+	80% {font-family: "Merriweather";}
+	90% {font-family: "Roboto", sans-serif;}
+	100% {font-family: "Open Sans Condensed", sans-serif;}
+}
+
+.noButtonGoUp:hover {
+	transform: none !important;
+}
+
+.noRainbowAni:hover {
+	animation: none !important;
+}
+
+.welcomeMessage {
+	animation: titleAni 20s infinite;
+	font-size: 50px;
+}
+
+.HSCardTopMargin {
+	margin-top: 30px;
+}
+
+.HSMissionCard {
+	border: 20px solid white;
+	background-image: url("pic/missions.png");
+}
+
+.HSMissionCard:hover {
+	animation: borderColorAni 5s infinite;
+}
+
+@keyframes borderColorAni {
+	0% {border-color: red;}
+	20% {border-color: orange;}
+	40% {border-color: yellow;}
+	60% {border-color: lightgreen;}
+	80% {border-color: blue;}
+	95% {border-color: purple;}
+	100% {border-color: red;}
+}
+
+.HSSettingsCard {
+	height: 250px;
+	border: 20px solid white;
+	background-image: url("pic/settings.jpg");
+}
+
+.HSSettingsCard:hover {
+	animation: borderColorAni 5s infinite;
+}
+
+.HSCardText { top:140px; color: white; font-size: 50px; }
