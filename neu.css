@@ -168,3 +168,8 @@ body {
 	animation: none !important;
 	border-color: #03fc0f !important;
 }
+
+.noRainbowAniWelcome {
+	animation: none !important;
+	color: black;
+}
