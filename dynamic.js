@@ -56,7 +56,6 @@ function homeScreen() {
 function settingsPage() {
   document.getElementById("rootDIV").innerHTML = `<div id='settingsCard' class='defaultCardDynamic HSInfoCard'><div class='leftfifty'>
   <h1 style='font-size:60px;'>Settings</h1>
-  <br>
   <h2>Home Screen</h2>
   <p>Rainbow animations around boxes & on text</p>
   <input type="radio" id="yesrainbow" name="rainbowanihsbox" value="yes">
