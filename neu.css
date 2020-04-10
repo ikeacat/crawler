@@ -1,7 +1,7 @@
 .HSTitle {
 	font-size: 40px;
 	color: white;
-	animation: fontchange 2s infinite; 
+	animation: fontchange 1s infinite; 
 	position: relative;
 }
 
@@ -159,3 +159,12 @@ body {
 }
 
 .HSCardText { top:140px; color: white; font-size: 50px; }
+
+.noAUnderline {
+	text-decoration: none;
+}
+
+.altHSBGAni:hover {
+	animation: none !important;
+	border-color: #03fc0f !important;
+}
