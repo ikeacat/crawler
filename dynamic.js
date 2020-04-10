@@ -1,4 +1,4 @@
-var versionNumber = "1.2"
+var versionNumber = "1.2.1"
 
 function startGame() {
   document.getElementsByClassName("HSBody")[0].classList.remove("HSBody");
@@ -63,7 +63,10 @@ function settingsPage() {
   <label for="yesrainbow">Have the rainbow</label><br>
   <input type="radio" id="norainbow" name="rainbowanihsbox" value="no">
   <label for="norainbow">No Rainbow (green / black)</label><br><br>
-  <button class='noButtonGoUp defbutton' onclick='saveSettings()'>Save</button>
+  <button class='noButtonGoUp defbutton' onclick='saveSettings()'>Save</button><br><br>
+  <button onclick='openDebug()' class='defbutton noButtonGoUp' id='ccs'>Open Complicated Stuff</button>
+  <br>
+  <p id='complicatedStuff'></p>
   <br><br><br>
   </div></div>`
   checkTrueValues();
@@ -89,4 +92,16 @@ function saveSettings() {
     localStorage.setItem("rainbow","false")
   }
   homeScreen();
+}
+
+function openDebug() {
+  document.getElementById("complicatedStuff").innerHTML = "Version: " + versionNumber;
+  document.getElementById("ccs").innerHTML = "Close Complicated Stuff";
+  document.getElementById("ccs").setAttribute("onclick","closeDebug()");
+}
+
+function closeDebug() {
+  document.getElementById("complicatedStuff").innerHTML = "";
+  document.getElementById("ccs").innerHTML = "Open Complicated Stuff";
+  document.getElementById("ccs").setAttribute("onclick", "openDebug()");
 }
