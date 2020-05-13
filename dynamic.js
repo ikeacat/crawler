@@ -44,13 +44,14 @@ function homeScreen() {
   var rainbow = localStorage.getItem('rainbow');
   document.getElementById("rootDIV").innerHTML = `<div><div id='infoCard' class='defaultCardDynamic HSInfoCard'><h1 class='leftfifty welcomeMessage' id='welcome'>Welcome, <span id='un'></span>!</div>
   <div class='defaultCardDynamic HSCardTopMargin HSMissionCard' id='MissionCard' style='height: 250px;'><h1 class='leftfifty HSCardText'>Missions</h1></div>
-  <a href='javascript:settingsPage()' class='noAUnderline'><div class='defaultCardDynamic HSCardTopMargin HSSettingsCard' id='SettingCard'><h1 class='leftfifty HSCardText'>Settings</h1></div></a></div>`;
+  <div class='defaultCardDynamic HSCardTopMargin HSSettingsCard' id='SettingCard'><h1 class='leftfifty HSCardText'>Settings</h1></div></div>`;
   document.getElementById("un").innerHTML = localStorage.getItem("username");
   if(rainbow == "false") {
     document.getElementById("MissionCard").classList.add("altHSBGAni");
     document.getElementById("SettingCard").classList.add("altHSBGAni");
     document.getElementById("welcome").classList.add("noRainbowAniWelcome");
   }
+  document.getElementById("SettingCard").addEventListener("click", settingsPage);
 }
 
 function settingsPage() {
