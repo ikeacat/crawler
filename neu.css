@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
+@font-face {
+    font-family: "DOS437";
+    src: url("fonts/DOS437.ttf");
+}
+
 .defaultFont {
     font-family: "Times New Roman", "Lora", "Times New Roman OS", serif;
 }
@@ -18,4 +23,19 @@
 }
 .linkbutton:active {
     color: orange;
+}
+
+.CMDSequence {
+    font-family: "DOS437" !important;
+    font-size: 16px !important;
+    background-color: black;
+    color: white;
+}
+
+.cmdfont {
+    font-family: "DOS437";
+}
+
+.cmdItem {
+    margin-top: 2px;
 }
