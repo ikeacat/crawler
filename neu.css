@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
 @font-face {
-    font-family: "DOS437";
-    src: url("fonts/DOS437.ttf");
+    font-family:"DOS437";
+    src: url("font/DOS437/Perfect\ DOS\ VGA\ 437.ttf");
 }
 
-.defaultFont {
+.oldDefaultFont {
     font-family: "Times New Roman", "Lora", "Times New Roman OS", serif;
 }
 
@@ -13,7 +13,7 @@
     font-size: 60px;
 }
 
-.linkbutton {
+.linkbutton { /* this wont be used */
     color: blue;
     padding:2px;
     border:none;
@@ -28,6 +28,9 @@
 .CMDSequence {
     font-family: "DOS437" !important;
     font-size: 16px !important;
+}
+
+body {
     background-color: black;
     color: white;
 }
@@ -38,4 +41,22 @@
 
 .cmdItem {
     margin-top: 2px;
+}
+
+.defaultFont {
+    font-family: "DOS437", monospace;
+    font-size:16px;
+}
+p.defaultFont {
+    font-size:16px;
+}
+h1.defaultFont {
+    font-size:32px;
+}
+.defaultFont.plzBeLarge {
+    font-size:64px;
+}
+
+.powericon {
+    cursor: pointer;
 }
