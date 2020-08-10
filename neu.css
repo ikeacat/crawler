@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
-.defaultFont {
+@font-face {
+    font-family:"DOS437";
+    src: url("font/DOS437/Perfect\ DOS\ VGA\ 437.ttf");
+}
+
+.oldDefaultFont {
     font-family: "Times New Roman", "Lora", "Times New Roman OS", serif;
 }
 
@@ -8,7 +13,7 @@
     font-size: 60px;
 }
 
-.linkbutton {
+.linkbutton { /* this wont be used */
     color: blue;
     padding:2px;
     border:none;
@@ -18,4 +23,27 @@
 }
 .linkbutton:active {
     color: orange;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.defaultFont {
+    font-family: "DOS437", monospace;
+    font-size:16px;
+}
+p.defaultFont {
+    font-size:16px;
+}
+h1.defaultFont {
+    font-size:32px;
+}
+.defaultFont.plzBeLarge {
+    font-size:64px;
+}
+
+.powericon {
+    cursor: pointer;
 }
